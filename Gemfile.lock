@@ -1,0 +1,27 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    dotenv (2.7.6)
+    faraday (1.4.1)
+      faraday-excon (~> 1.1)
+      faraday-net_http (~> 1.0)
+      faraday-net_http_persistent (~> 1.1)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords (>= 0.0.4)
+    faraday-excon (1.1.0)
+    faraday-net_http (1.0.1)
+    faraday-net_http_persistent (1.1.0)
+    highline (2.0.3)
+    multipart-post (2.1.1)
+    ruby2_keywords (0.0.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  dotenv
+  faraday
+  highline
+
+BUNDLED WITH
+   2.1.4
