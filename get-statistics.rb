@@ -28,10 +28,10 @@ else
   exit
 end
 
-result = Mirth::Channel.fetch(mapi)
+result = Mirth::ChannelStatistic.fetch(mapi)
 
-result.channels.each do |chan|
-  puts "#{chan.id}, #{chan.name}, #{chan.description}"
+result.channel_statistics.each do |chan|
+  puts "#{chan.channel_id}, #{chan.server_id}, #{chan.queued}"
 end
 
 mapi.logout
