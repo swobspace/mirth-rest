@@ -1,5 +1,8 @@
+require 'active_support/core_ext/module/attribute_accessors'
+require_relative 'mirth/api'
+
 module Mirth
-  autoload :Api, 'mirth/api'
+  # autoload :Api, './mirth/api.rb'
 
   def self.config
     yield self
@@ -7,5 +10,5 @@ module Mirth
 
   # baseurl
   mattr_accessor :baseurl
-  @@baseurl = 'https://localhost:8443/api'
+  self.baseurl = 'https://localhost:8443/api'
 end
