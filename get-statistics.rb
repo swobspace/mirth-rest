@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-require_relative 'lib/mirth_api.rb'
 Bundler.require(:default)
+require_relative 'lib/mirth.rb'
 
 Dotenv.load
 @cli = HighLine.new
@@ -20,16 +20,15 @@ options = {
   ssl: { verify: false },
 }
 
-mirth = MirthApi.new(options)
-if mirth.login(get_user, get_passwd)
+mapi = Mirth::Api.new(options)
+if mapi.login(get_user, get_passwd)
   puts "valid session"
 else
   puts "no valid session found, sorry"
   exit
 end
 
-mirth.get('users/current')
-mirth.get('channels/statistics')
-mirth.get('channels/idsAndNames')
-mirth.get('server/configuration')
-mirth.get('server/version')
+result = Mirth::Channel.fetch(mapi)
+puts result.channels.first.json
+
+mapi.logout

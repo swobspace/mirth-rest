@@ -21,8 +21,15 @@ GEM
     highline (2.0.3)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    immutable-struct (2.4.1)
+    mini_portile2 (2.5.0)
     minitest (5.14.4)
+    multi_json (1.15.0)
     multipart-post (2.1.1)
+    nokogiri (1.11.3)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
+    racc (1.5.2)
     ruby2_keywords (0.0.4)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -36,6 +43,9 @@ DEPENDENCIES
   dotenv
   faraday
   highline
+  immutable-struct
+  multi_json
+  nokogiri
 
 BUNDLED WITH
    2.1.4

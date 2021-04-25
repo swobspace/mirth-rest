@@ -33,7 +33,7 @@ module Mirth
       end 
     end
      
-    def valid_session?
+    def valid?
       !!@session
     end
 
