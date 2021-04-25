@@ -29,6 +29,9 @@ else
 end
 
 result = Mirth::Channel.fetch(mapi)
-puts result.channels.first.json
+
+result.channels.each do |chan|
+  puts "#{chan.id}, #{chan.name}, #{chan.description}"
+end
 
 mapi.logout
