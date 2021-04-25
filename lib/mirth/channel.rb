@@ -1,6 +1,6 @@
 module Mirth
   class Channel
-    attr_reader :xml, :json
+    attr_reader :xml, :channel
     Result = ImmutableStruct.new( :success?, :error_messages, :channels )
 
     # Mirth::Channel.fetch(connection)
@@ -37,7 +37,24 @@ module Mirth
     #
     def initialize(xml)
       @xml = xml
-      @json = Hash.from_xml(xml).to_json
+      @channel = Hash.from_xml(xml)
+      @channel = @channel["channel"]
+    end
+
+    def version
+      channel['version']
+    end
+
+    def id
+      channel['id']
+    end
+    
+    def name
+      channel['name']
+    end
+    
+    def description
+      channel['description']
     end
     
   end
