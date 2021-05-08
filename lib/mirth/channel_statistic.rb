@@ -50,7 +50,7 @@ module Mirth
     end
     
     def queued
-      channel_statistic['queued']
+      channel_statistic['queued'].to_i
     end
     
   end
