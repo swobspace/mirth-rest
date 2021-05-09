@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-Bundler.require(:default)
-require_relative 'lib/mirth.rb'
+Bundler.require(:development, :default)
+require 'mirth'
 
 Dotenv.load
 @cli = HighLine.new

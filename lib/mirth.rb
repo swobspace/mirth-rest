@@ -1,15 +1,18 @@
 require 'active_support/core_ext/hash'
 require 'active_support/core_ext/module/attribute_accessors'
 require 'json'
+require 'immutable-struct'
+require 'faraday'
+require 'nokogiri'
 
-require_relative 'mirth/api'
-require_relative 'mirth/xml_list'
-require_relative 'mirth/channel'
-require_relative 'mirth/channel_name'
-require_relative 'mirth/channel_statistic'
-require_relative 'mirth/channel_status'
-require_relative 'mirth/system_info'
-require_relative 'mirth/system_stats'
+require 'mirth/api'
+require 'mirth/xml_list'
+require 'mirth/channel'
+require 'mirth/channel_name'
+require 'mirth/channel_statistic'
+require 'mirth/channel_status'
+require 'mirth/system_info'
+require 'mirth/system_stats'
 
 module Mirth
 
