@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-Bundler.require(:default)
+Bundler.require(:development, :default)
 require_relative 'lib/mirth.rb'
 
 Dotenv.load
@@ -15,8 +15,13 @@ def get_passwd(prompt="Enter Password")
   ENV['PASSWD'] || @cli.ask(prompt) { |q| q.echo = false }
 end
 
+def get_url(prompt="Enter URL")
+  ENV['URL'] || @cli.ask(prompt) { |q| q.default = 'https://localhost:8443/api' }
+end
+
+
 options = {
-  url: 'https://localhost:8443/api',
+  url: get_url,
   ssl: { verify: false },
 }
 

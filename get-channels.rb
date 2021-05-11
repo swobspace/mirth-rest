@@ -2,7 +2,7 @@
 
 require 'bundler/setup'
 Bundler.require(:development, :default)
-require 'mirth'
+require_relative 'lib/mirth.rb'
 
 Dotenv.load
 @cli = HighLine.new
@@ -33,11 +33,14 @@ else
   exit
 end
 
-[ Mirth::SystemInfo.fetch(mapi).info, Mirth::SystemStats.fetch(mapi).stats ].each do |sys|
+result = Mirth::Channel.fetch(mapi)
+unless result.success?
+  puts result.error_messages.join("; ")
+  exit 1
+end
 
-  sys.attributes.each do |k,v|
-    puts "#{k}: #{v}"
-  end
+result.channels.each do |ch|
+  puts ch.xml
 end
 
 mapi.logout
