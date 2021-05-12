@@ -45,37 +45,23 @@ chash = {}.tap do |hash|
   end
 end
 
-# result = Mirth::ChannelStatus.fetch(mapi)
-# unless result.success?
-#   puts result.error_messages.join("; ")
-#   exit 1
-# end
-# chash = {}.tap do |hash|
-#   result.channel_statuses.each do |ch|
-#     puts "#{ch.id}; #{ch.name}; #{ch.state}; #{ch.status_type}; #{ch.queued}"
-#     if ch.status_type == "CHANNEL"
-#       hash[ch.id] = [ ch.name, ch.state ]
-#     end
-#   end
-# end
-
 result = Mirth::ChannelStatistic.fetch(mapi)
 
 sumqueue = 0
 warning = []
 
 result.channel_statistics.each do |chan|
-  msg = "#{chash[chan.channel_id]}: #{chan.queued}"
+  msg = "WARN:: #{chash[chan.channel_id]}: #{chan.queued}"
   if chan.queued > 0
     sumqueue += chan.queued
     warning << msg
   end
 end
 
-puts "Summe: #{sumqueue}"
-puts "WARN:: #{warning.join("; ")}"
-
 version = mapi.get("server/version").body
 puts "Mirth version: #{version}"
+
+puts "#{warning.join("\n")}"
+puts "Summe: #{sumqueue}"
 
 mapi.logout
