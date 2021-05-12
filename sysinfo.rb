@@ -33,11 +33,22 @@ else
   exit
 end
 
-[ Mirth::SystemInfo.fetch(mapi).info, Mirth::SystemStats.fetch(mapi).stats ].each do |sys|
-
+[ Mirth::SystemInfo.fetch(mapi).info ].each do |sys|
   sys.attributes.each do |k,v|
     puts "#{k}: #{v}"
   end
 end
+stats =  Mirth::SystemStats.fetch(mapi).stats
+
+printf "cpu usage: %4.2f %%\n", stats.cpu_usage_pct.to_f
+printf "Memory used/free/max (MByte): %dM / %dM / %dM\n", 
+       stats.allocated_memory_bytes.to_i / 1024**2,
+       stats.free_memory_bytes.to_i / 1024**2,
+       stats.max_memory_bytes.to_i / 1024**2
+printf "Disk used/free/max (GByte): %dG / %dG / %dG\n", 
+       (stats.disk_total_bytes.to_i - stats.disk_free_bytes.to_i) / 1024**3,
+       stats.disk_free_bytes.to_i / 1024**3,
+       stats.disk_total_bytes.to_i / 1024**3,
+
 
 mapi.logout
