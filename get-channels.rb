@@ -40,7 +40,7 @@ unless result.success?
 end
 
 result.channels.each do |ch|
-  puts ch.xml
+  printf "%40s : %s\n", ch.name, ch.channel['exportData']['metadata']['pruningSettings'].to_s
 end
 
 mapi.logout
