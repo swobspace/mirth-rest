@@ -1,4 +1,4 @@
-module Mirth
+module Wobmire
   class SystemInfo
     attr_reader :xml, :info
     Result = ImmutableStruct.new( :success?, :error_messages, :info )
@@ -6,9 +6,9 @@ module Mirth
     ATTRIBUTES = [:jvm_version, :os_name, :os_version, :os_architecture,
                   :db_name, :db_version]
 
-    # Mirth::SystemInfo.fetch(connection)
+    # Wobmire::SystemInfo.fetch(connection)
     #
-    # - connection: valid Mirth::Api Connection (always authenticated)
+    # - connection: valid Wobmire::Api Connection (always authenticated)
     # 
     # returns result:
     # - result.success?
@@ -16,7 +16,7 @@ module Mirth
     # - result.info: system info
     #
     def self.fetch(connection)
-      result = Mirth::XmlList.fetch(connection, "system/info", "com.mirth.connect.model.SystemInfo")
+      result = Wobmire::XmlList.fetch(connection, "system/info", "com.mirth.connect.model.SystemInfo")
       unless result.success?
         return Result.new(
           success: result.success?, 
@@ -28,11 +28,11 @@ module Mirth
       return Result.new(
         success: true,
         error_messages: [],
-        info: Mirth::SystemInfo.new(xml)
+        info: Wobmire::SystemInfo.new(xml)
       )
     end
 
-    # Mirth::SystemInfo.new(xml)
+    # Wobmire::SystemInfo.new(xml)
     #
     def initialize(xml)
       @xml = xml

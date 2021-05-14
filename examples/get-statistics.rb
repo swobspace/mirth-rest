@@ -2,7 +2,6 @@
 
 require 'bundler/setup'
 Bundler.require(:development, :default)
-require_relative 'lib/mirth.rb'
 
 Dotenv.load
 @cli = HighLine.new
@@ -25,7 +24,7 @@ options = {
   ssl: { verify: false },
 }
 
-mapi = Mirth::Api.new(options)
+mapi = Wobmire::Api.new(options)
 if mapi.login(get_user, get_passwd)
   puts "valid session"
 else
@@ -33,7 +32,7 @@ else
   exit
 end
 
-result = Mirth::ChannelName.fetch(mapi)
+result = Wobmire::ChannelName.fetch(mapi)
 unless result.success?
   puts result.error_messages.join("; ")
   exit 1
@@ -45,7 +44,7 @@ chash = {}.tap do |hash|
   end
 end
 
-result = Mirth::ChannelStatistic.fetch(mapi)
+result = Wobmire::ChannelStatistic.fetch(mapi)
 
 sumqueue = 0
 warning = []

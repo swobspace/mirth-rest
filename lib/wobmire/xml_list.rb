@@ -1,10 +1,10 @@
-module Mirth
+module Wobmire
   class XmlList
     Result = ImmutableStruct.new( :success?, :error_messages, :xml_list )
 
-    # Mirth::XmlList.fetch(connection, url, identifier)
+    # Wobmire::XmlList.fetch(connection, url, identifier)
     #
-    # - connection: valid Mirth::Api Connection (always authenticated)
+    # - connection: valid Wobmire::Api Connection (always authenticated)
     # - url: api request
     # - identifier: root node of an single entry
     # 

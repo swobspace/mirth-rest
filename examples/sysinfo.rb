@@ -2,7 +2,6 @@
 
 require 'bundler/setup'
 Bundler.require(:development, :default)
-require 'mirth'
 
 Dotenv.load
 @cli = HighLine.new
@@ -25,7 +24,7 @@ options = {
   ssl: { verify: false },
 }
 
-mapi = Mirth::Api.new(options)
+mapi = Wobmire::Api.new(options)
 if mapi.login(get_user, get_passwd)
   puts "valid session"
 else
@@ -33,12 +32,12 @@ else
   exit
 end
 
-[ Mirth::SystemInfo.fetch(mapi).info ].each do |sys|
+[ Wobmire::SystemInfo.fetch(mapi).info ].each do |sys|
   sys.attributes.each do |k,v|
     puts "#{k}: #{v}"
   end
 end
-stats =  Mirth::SystemStats.fetch(mapi).stats
+stats =  Wobmire::SystemStats.fetch(mapi).stats
 
 printf "cpu usage: %4.2f %%\n", stats.cpu_usage_pct.to_f
 printf "Memory used/free/max (MByte): %dM / %dM / %dM\n", 

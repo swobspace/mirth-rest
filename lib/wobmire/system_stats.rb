@@ -1,4 +1,4 @@
-module Mirth
+module Wobmire
   class SystemStats
     attr_reader :xml, :stats
     Result = ImmutableStruct.new( :success?, :error_messages, :stats )
@@ -14,9 +14,9 @@ module Mirth
       :disk_total_bytes
     ]
 
-    # Mirth::SystemStats.fetch(connection)
+    # Wobmire::SystemStats.fetch(connection)
     #
-    # - connection: valid Mirth::Api Connection (always authenticated)
+    # - connection: valid Wobmire::Api Connection (always authenticated)
     # 
     # returns result:
     # - result.success?
@@ -24,7 +24,7 @@ module Mirth
     # - result.stats: system stats
     #
     def self.fetch(connection)
-      result = Mirth::XmlList.fetch(connection, "system/stats", "com.mirth.connect.model.SystemStats")
+      result = Wobmire::XmlList.fetch(connection, "system/stats", "com.mirth.connect.model.SystemStats")
       unless result.success?
         return Result.new(
           success: result.success?, 
@@ -36,11 +36,11 @@ module Mirth
       return Result.new(
         success: true,
         error_messages: [],
-        stats: Mirth::SystemStats.new(xml)
+        stats: Wobmire::SystemStats.new(xml)
       )
     end
 
-    # Mirth::SystemInfo.new(xml)
+    # Wobmire::SystemInfo.new(xml)
     #
     def initialize(xml)
       @xml = xml

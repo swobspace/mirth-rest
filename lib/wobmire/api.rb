@@ -1,4 +1,4 @@
-module Mirth
+module Wobmire
   class Api
     attr_reader :options, :connection
 

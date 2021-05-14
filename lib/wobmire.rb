@@ -5,16 +5,16 @@ require 'immutable-struct'
 require 'faraday'
 require 'nokogiri'
 
-require 'mirth/api'
-require 'mirth/xml_list'
-require 'mirth/channel'
-require 'mirth/channel_name'
-require 'mirth/channel_statistic'
-require 'mirth/channel_status'
-require 'mirth/system_info'
-require 'mirth/system_stats'
+require 'wobmire/api'
+require 'wobmire/xml_list'
+require 'wobmire/channel'
+require 'wobmire/channel_name'
+require 'wobmire/channel_statistic'
+require 'wobmire/channel_status'
+require 'wobmire/system_info'
+require 'wobmire/system_stats'
 
-module Mirth
+module Wobmire
 
   def self.config
     yield self

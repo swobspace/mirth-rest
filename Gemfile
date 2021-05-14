@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in mirth-rest.gemspec
+# Specify your gem's dependencies in wobmire.gemspec
 gemspec
 
 gem "rake", "~> 12.0"

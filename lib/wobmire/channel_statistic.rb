@@ -1,21 +1,21 @@
-module Mirth
+module Wobmire
   class ChannelStatistic
     attr_reader :xml, :channel_statistic
     Result = ImmutableStruct.new( :success?, :error_messages, :channel_statistics )
 
-    # Mirth::Channel.fetch(connection)
+    # Wobmire::Channel.fetch(connection)
     #
-    # - connection: valid Mirth::Api Connection (always authenticated)
+    # - connection: valid Wobmire::Api Connection (always authenticated)
     # 
     # returns result:
     # - result.success?
     # - result.error_messages: array; empty in case of success
-    # - result.channel_statistics: list of Mirth::ChannelStatistics instances
+    # - result.channel_statistics: list of Wobmire::ChannelStatistics instances
     #
     # generic fetch
     def self.fetch(connection)
       channel_statistics = []
-      result = Mirth::XmlList.fetch(connection, "channels/statistics", "channelStatistics")
+      result = Wobmire::XmlList.fetch(connection, "channels/statistics", "channelStatistics")
       unless result.success?
         return Result.new(
           success: result.success?, 
@@ -24,7 +24,7 @@ module Mirth
         )
       end
       result.xml_list.each do |xml|
-        channel_statistics << Mirth::ChannelStatistic.new(xml)
+        channel_statistics << Wobmire::ChannelStatistic.new(xml)
       end
       return Result.new(
         success: true,
@@ -33,7 +33,7 @@ module Mirth
       )
     end
 
-    # Mirth::ChannelStatistics.new(xml)
+    # Wobmire::ChannelStatistics.new(xml)
     #
     def initialize(xml)
       @xml = xml

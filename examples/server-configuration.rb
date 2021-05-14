@@ -2,7 +2,6 @@
 
 require 'bundler/setup'
 Bundler.require(:development, :default)
-require 'mirth'
 
 Dotenv.load
 @cli = HighLine.new
@@ -25,7 +24,7 @@ options = {
   ssl: { verify: false },
 }
 
-mapi = Mirth::Api.new(options)
+mapi = Wobmire::Api.new(options)
 unless mapi.login(get_user, get_passwd)
   puts "no valid session found, sorry"
   exit

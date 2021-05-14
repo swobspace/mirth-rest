@@ -1,13 +1,13 @@
-require_relative 'lib/mirth/rest/version'
+require_relative 'lib/wobmire/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "mirth-rest"
-  spec.version       = Mirth::Rest::VERSION
+  spec.name          = "wobmire"
+  spec.version       = Wobmire::VERSION
   spec.authors       = ["Wolfgang Barth"]
   spec.email         = ["wob@swobspace.net"]
 
   spec.summary       = %q{Interface for Mirth Connect Rest API}
-  spec.homepage      = "https://github.com/swobspace/mirth-rest/"
+  spec.homepage      = "https://github.com/swobspace/wobmire/"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 

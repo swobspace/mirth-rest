@@ -1,6 +1,6 @@
-RSpec.describe Mirth::Rest do
+RSpec.describe Wobmire do
   it "has a version number" do
-    expect(Mirth::Rest::VERSION).not_to be nil
+    expect(Wobmire::VERSION).not_to be nil
   end
 
   it "does something useful" do
