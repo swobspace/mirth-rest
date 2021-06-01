@@ -13,6 +13,7 @@ require 'wobmire/channel_statistic'
 require 'wobmire/channel_status'
 require 'wobmire/system_info'
 require 'wobmire/system_stats'
+require 'wobmire/server_settings'
 
 module Wobmire
 
