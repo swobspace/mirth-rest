@@ -17,20 +17,25 @@ module Wobmire
     end
 
     def login(user, passwd)
-      response = connection.post "users/_login" do |req|
-        req.headers[:content_type] = "application/x-www-form-urlencoded"
-        req.headers[:accept]       = "application/xml"
-        req.params[:username]      = user
-        req.params[:password]      = passwd
-      end
+      begin
+        response = connection.post "users/_login" do |req|
+          req.headers[:content_type] = "application/x-www-form-urlencoded"
+          req.headers[:accept]       = "application/xml"
+          req.params[:username]      = user
+          req.params[:password]      = passwd
+        end
 
-      if response.status == 200
-        @session = response.headers['Set-Cookie']
-        return true
-      else
+        if response.status == 200
+          @session = response.headers['Set-Cookie']
+          return true
+        else
+          @session = nil
+          return false
+        end 
+      rescue e
         @session = nil
         return false
-      end 
+      end
     end
      
     def valid?
