@@ -31,13 +31,13 @@ module Wobmire
         else
           @session = nil
           return false
-        end 
-      rescue e
+        end
+      rescue
         @session = nil
         return false
       end
     end
-     
+
     def valid?
       !!@session
     end
