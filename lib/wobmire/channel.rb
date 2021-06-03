@@ -1,6 +1,6 @@
 module Wobmire
   class Channel
-    attr_reader :xml, :channel
+    attr_reader :xml, :properties
     Result = ImmutableStruct.new( :success?, :error_messages, :channels )
 
     # Wobmire::Channel.fetch(connection)
@@ -37,24 +37,24 @@ module Wobmire
     #
     def initialize(xml)
       @xml = xml
-      @channel = Hash.from_xml(xml)
-      @channel = @channel["channel"]
+      channel = Hash.from_xml(xml)
+      @properties = channel["channel"]
     end
 
     def version
-      channel['version']
+      properties['version']
     end
 
     def id
-      channel['id']
+      properties['id']
     end
     
     def name
-      channel['name']
+      properties['name']
     end
     
     def description
-      channel['description']
+      properties['description']
     end
     
   end
