@@ -1,6 +1,6 @@
 module Wobmire
   class ChannelStatistic
-    attr_reader :xml, :channel_statistic
+    attr_reader :xml, :statistics
     Result = ImmutableStruct.new( :success?, :error_messages, :channel_statistics )
 
     # Wobmire::Channel.fetch(connection)
@@ -37,20 +37,20 @@ module Wobmire
     #
     def initialize(xml)
       @xml = xml
-      @channel_statistic = Hash.from_xml(xml)
-      @channel_statistic = @channel_statistic["channelStatistics"]
+      @statistics = Hash.from_xml(xml)
+      @statistics = @statistics["channelStatistics"]
     end
 
     def channel_id
-      channel_statistic['channelId']
+      statistics['channelId']
     end
     
     def server_id
-      channel_statistic['serverId']
+      statistics['serverId']
     end
     
     def queued
-      channel_statistic['queued'].to_i
+      statistics['queued'].to_i
     end
     
   end
