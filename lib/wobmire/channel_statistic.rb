@@ -3,14 +3,14 @@ module Wobmire
     attr_reader :xml, :statistics
     Result = ImmutableStruct.new( :success?, :error_messages, :channel_statistics )
 
-    # Wobmire::Channel.fetch(connection)
+    # Wobmire::ChannelStatistic.fetch(connection)
     #
     # - connection: valid Wobmire::Api Connection (always authenticated)
     # 
     # returns result:
     # - result.success?
     # - result.error_messages: array; empty in case of success
-    # - result.channel_statistics: list of Wobmire::ChannelStatistics instances
+    # - result.channel_statistics: list of Wobmire::ChannelStatistic instances
     #
     # generic fetch
     def self.fetch(connection)
