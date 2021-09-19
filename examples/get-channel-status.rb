@@ -43,10 +43,13 @@ unless result.success?
 end
 
 result.channel_statuses.each do |st|
-  # doc = Nokogiri::XML(st.xml)
-  # x = doc.xpath("//childStatuses/dashboardStatus")
-  # puts Hash.from_xml(x.to_s).to_yaml
-  puts st.xml
+  doc = Nokogiri::Slop(st.xml)
+  xconnectors = doc.xpath("/dashboardStatus/childStatuses//dashboardStatus")
+  xconnectors.each do |xc|
+    puts xc.xpath("name").text
+    puts "   #{xc.xpath("state").text}"
+    puts "   #{xc.xpath("queued").text}"
+  end
 end
 
 mapi.logout
