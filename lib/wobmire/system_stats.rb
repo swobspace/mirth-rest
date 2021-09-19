@@ -24,7 +24,7 @@ module Wobmire
     # - result.stats: system stats
     #
     def self.fetch(connection)
-      result = Wobmire::XmlList.fetch(connection, "system/stats", "com.mirth.connect.model.SystemStats")
+      result = Wobmire::XmlList.fetch(connection, "system/stats", "//com.mirth.connect.model.SystemStats")
       unless result.success?
         return Result.new(
           success: result.success?, 

@@ -16,9 +16,9 @@ module Wobmire
     def self.fetch(connection, channel_id = nil)
       channel_statuses = []
       if channel_id.nil?
-        result = Wobmire::XmlList.fetch(connection, "channels/statuses", "dashboardStatus")
+        result = Wobmire::XmlList.fetch(connection, "channels/statuses", "/list//dashboardStatus")
       else
-        result = Wobmire::XmlList.fetch(connection, "channels/#{channel_id}/status", "dashboardStatus")
+        result = Wobmire::XmlList.fetch(connection, "channels/#{channel_id}/status", "/dashboardStatus")
       end
       unless result.success?
         return Result.new(

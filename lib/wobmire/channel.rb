@@ -15,7 +15,7 @@ module Wobmire
     # generic fetch
     def self.fetch(connection)
       channels = []
-      result = Wobmire::XmlList.fetch(connection, "channels", "channel")
+      result = Wobmire::XmlList.fetch(connection, "channels", "//channel")
       unless result.success?
         return Result.new(
           success: result.success?, 

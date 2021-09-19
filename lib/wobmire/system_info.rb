@@ -16,7 +16,7 @@ module Wobmire
     # - result.info: system info
     #
     def self.fetch(connection)
-      result = Wobmire::XmlList.fetch(connection, "system/info", "com.mirth.connect.model.SystemInfo")
+      result = Wobmire::XmlList.fetch(connection, "system/info", "//com.mirth.connect.model.SystemInfo")
       unless result.success?
         return Result.new(
           success: result.success?, 

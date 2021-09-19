@@ -44,7 +44,7 @@ module Wobmire
   private
     def self.xml_to_list(text, identifier)
       doc = Nokogiri::XML(text)
-      doc.xpath("//#{identifier}").map(&:to_s)
+      doc.xpath("#{identifier}").map(&:to_s)
     end
   end
 end

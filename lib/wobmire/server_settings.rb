@@ -15,7 +15,7 @@ module Wobmire
     # - result.settings: ServerSettings.new
     #
     def self.fetch(connection)
-      result = Wobmire::XmlList.fetch(connection, "server/settings", "serverSettings")
+      result = Wobmire::XmlList.fetch(connection, "server/settings", "//serverSettings")
       unless result.success?
         return Result.new(
           success: result.success?, 
