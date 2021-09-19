@@ -3,7 +3,7 @@ module Wobmire
     attr_reader :xml, :channel_status
     Result = ImmutableStruct.new( :success?, :error_messages, :channel_statuses )
 
-    # Wobmire::Channel.fetch(connection)
+    # Wobmire::Channel.fetch(connection, channel_id = nil)
     #
     # - connection: valid Wobmire::Api Connection (always authenticated)
     # 
@@ -13,9 +13,13 @@ module Wobmire
     # - result.channel_statuses: list of Wobmire::Channel instances
     #
     # generic fetch
-    def self.fetch(connection)
+    def self.fetch(connection, channel_id = nil)
       channel_statuses = []
-      result = Wobmire::XmlList.fetch(connection, "channels/statuses", "dashboardStatus")
+      if channel_id.nil?
+        result = Wobmire::XmlList.fetch(connection, "channels/statuses", "dashboardStatus")
+      else
+        result = Wobmire::XmlList.fetch(connection, "channels/#{channel_id}/status", "dashboardStatus")
+      end
       unless result.success?
         return Result.new(
           success: result.success?, 
