@@ -7,15 +7,15 @@ Dotenv.load
 @cli = HighLine.new
 
 def get_user(prompt="Enter Login")
-  ENV['USER'] || @cli.ask(prompt) { |q| q.default = 'api' }
+  ENV['APIUSER'] || @cli.ask(prompt) { |q| q.default = 'api' }
 end
 
 def get_passwd(prompt="Enter Password")
-  ENV['PASSWD'] || @cli.ask(prompt) { |q| q.echo = false }
+  ENV['APIPASSWD'] || @cli.ask(prompt) { |q| q.echo = false }
 end
 
 def get_url(prompt="Enter URL")
-  ENV['URL'] || @cli.ask(prompt) { |q| q.default = 'https://localhost:8443/api' }
+  ENV['APIURL'] || @cli.ask(prompt) { |q| q.default = 'https://localhost:8443/api' }
 end
 
 
