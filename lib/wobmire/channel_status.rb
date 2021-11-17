@@ -15,8 +15,8 @@ module Wobmire
     # generic fetch
     def self.fetch(connection, channel_id = nil)
       channel_statuses = []
-      if channel_id.nil?
-        result = Wobmire::XmlList.fetch(connection, "channels/statuses", "/list//dashboardStatus")
+      if channel_id.blank?
+        result = Wobmire::XmlList.fetch(connection, "channels/statuses", "/list/dashboardStatus")
       else
         result = Wobmire::XmlList.fetch(connection, "channels/#{channel_id}/status", "/dashboardStatus")
       end
@@ -37,7 +37,7 @@ module Wobmire
       )
     end
 
-    # Wobmire::Channel.new(xml)
+    # Wobmire::ChannelStatus.new(xml)
     #
     def initialize(xml)
       @xml = xml
