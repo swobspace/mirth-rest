@@ -44,11 +44,25 @@ end
 
 result.channel_statuses.each do |st|
   doc = Nokogiri::Slop(st.xml)
+  channel = doc.xpath("/dashboardStatus")
+  puts "# #{st.name}"
+  puts "  #{st.id}"
   xconnectors = doc.xpath("/dashboardStatus/childStatuses//dashboardStatus")
   xconnectors.each do |xc|
-    puts xc.xpath("name").text
-    puts "   #{xc.xpath("state").text}"
-    puts "   #{xc.xpath("queued").text}"
+    name = xc.xpath("name").text
+    meta = xc.xpath("metaDataId").text
+    prefix = "  > " 
+    puts prefix + "(#{meta}) #{name}"
+    prefix = "    * "
+    puts prefix + xc.xpath("statusType").text
+    puts prefix + "state: #{xc.xpath("state").text}"
+    puts prefix + "queued: #{xc.xpath("queued").text}"
+    xc.xpath("statistics/entry").each do |entry|
+      prefix = "    - "
+      key = entry.xpath("com.mirth.connect.donkey.model.message.Status").text
+      value = entry.xpath("long").text
+      puts prefix + "#{key}: #{value}"
+    end
   end
 end
 
