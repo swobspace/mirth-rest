@@ -9,13 +9,12 @@ doc = File.open(ARGV[0]) {|f| Nokogiri::XML(f) }
 libs = doc.xpath("//codeTemplateLibrary")
 
 libs.each do |lib|
-  templ = lib.xpath("//codeTemplate")
+  templ = lib.xpath("//codeTemplates/codeTemplate")
   templ.each do |tpl|
     hash = Hash.from_xml(tpl.to_s)
     hash = hash['codeTemplate']
     
-    puts "\n\n***********************\n"
-    puts hash['name']
+    puts "*** #{hash['name']} ***"
     hash['properties'].each do |k,v|
       puts "#{k}: #{v}\n"
     end
