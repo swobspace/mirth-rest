@@ -1,6 +1,6 @@
 module Wobmire
   class XmlList
-    Result = ImmutableStruct.new( :success?, :error_messages, :xml_list )
+    Result = ImmutableStruct.new( :success?, :error_messages, :xml_list, :raw )
 
     # Wobmire::XmlList.fetch(connection, url, identifier)
     #
@@ -11,7 +11,8 @@ module Wobmire
     # returns result:
     # - result.success?
     # - result.error_messages: array; empty in case of success
-    # - result.
+    # - result.xml_list: array of single xml entries
+    # - result.raw: raw resonse body = plain xml string
     #
     # generic fetch
     def self.fetch(connection, url, identifier)
@@ -29,15 +30,18 @@ module Wobmire
         return Result.new(
           success: false, 
           error_messages: ["Fetch xml_list failed for unknown reason"],
-          xml_list: []
+          xml_list: [],
+          raw: nil
         )
       end
       xml_list = xml_to_list(response.body, identifier)
+      raw = response.body
       
       return Result.new(
         success: true, 
         error_messages: [],
-        xml_list: xml_list
+        xml_list: xml_list,
+        raw: raw
       )
     end
 
