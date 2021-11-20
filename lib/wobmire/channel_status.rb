@@ -1,7 +1,7 @@
 module Wobmire
   class ChannelStatus
     attr_reader :xml, :channel_status
-    Result = ImmutableStruct.new( :success?, :error_messages, :channel_statuses )
+    Result = ImmutableStruct.new( :success?, :error_messages, :channel_statuses, :xml_list )
 
     # Wobmire::Channel.fetch(connection, channel_id = nil)
     #
@@ -24,7 +24,8 @@ module Wobmire
         return Result.new(
           success: result.success?, 
           error_messages: result.error_messages,
-          channel_statuses: []
+          channel_statuses: [],
+          xml_list: nil,
         )
       end
       result.xml_list.each do |xml|
@@ -33,7 +34,8 @@ module Wobmire
       return Result.new(
         success: true,
         error_messages: [],
-        channel_statuses: channel_statuses
+        channel_statuses: channel_statuses,
+        xml_list: result.xml_list
       )
     end
 
@@ -52,7 +54,6 @@ module Wobmire
     def name
       channel_status['name']
     end
-    
     def state
       channel_status['state']
     end
