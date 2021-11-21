@@ -47,6 +47,7 @@ result.channel_statuses.each do |st|
   channel = doc.xpath("/dashboardStatus")
   puts "# #{st.name}"
   puts "  #{st.id}"
+  puts "  #{channel.xpath("metaDataId").text}"
   xconnectors = channel.xpath("childStatuses/dashboardStatus")
   xconnectors.each do |xc|
     name = xc.xpath("name").text
