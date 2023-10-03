@@ -19,10 +19,11 @@ module Wobmire
     def login(user, passwd)
       begin
         response = connection.post "users/_login" do |req|
-          req.headers[:content_type] = "application/x-www-form-urlencoded"
-          req.headers[:accept]       = "application/xml"
-          req.params[:username]      = user
-          req.params[:password]      = passwd
+          req.headers[:content_t          = "application/x-www-form-urlencoded"
+          req.headers[:accept]            = "application/xml"
+          req.headers['X-Requested-With'] = "XMLHttpRequest"
+          req.params[:username]           = user
+          req.params[:password]           = passwd
         end
 
         if response.status == 200
@@ -55,6 +56,7 @@ module Wobmire
     def get(suburi, options = {})
       response = connection.get suburi do |req|
         req.headers['COOKIE'] = session
+        req.headers['X-Requested-With'] = "OpenAPI"
         req.headers.merge(options.fetch(:headers, nil) || {})
         req.params.merge(options.fetch(:params, nil) || {})
       end
@@ -63,6 +65,7 @@ module Wobmire
     def post(suburi, options = {})
       response = connection.post suburi do |req|
         req.headers['COOKIE'] = session
+        req.headers['X-Requested-With'] = "XMLHttpRequest"
         req.headers.merge(options.fetch(:headers, nil) || {})
         req.params.merge(options.fetch(:params, nil) || {})
         req.body = options.fetch(:body, nil)
