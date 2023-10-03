@@ -19,7 +19,7 @@ module Wobmire
     def login(user, passwd)
       begin
         response = connection.post "users/_login" do |req|
-          req.headers[:content_t          = "application/x-www-form-urlencoded"
+          req.headers[:content_type]      = "application/x-www-form-urlencoded"
           req.headers[:accept]            = "application/xml"
           req.headers['X-Requested-With'] = "XMLHttpRequest"
           req.params[:username]           = user
